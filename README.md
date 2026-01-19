@@ -6,6 +6,14 @@
 
 The goal of this project is to explore how ideas from **data science, computer science, mathematics, and physics** can be used to better understand football.
 
+## 1. Repository Structure
+
+### 1.1 football_metrics
+
+### 1.2 football_animations
+
+### 1.3 football_simulations
+
 ## Sources and attribution
 
 This project builds on a combination of **open datasets** and, in some cases, **data accessed under non-disclosure agreements (NDA)**. Only analyses and results that are permitted for public release are included in this repository.
