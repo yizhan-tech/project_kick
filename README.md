@@ -1,3 +1,5 @@
+![Banner](media/banner.png)
+
 # README
 
 `Project KICK` is an open repository focused on **football (soccer) analytics and applied science**, with an emphasis on clear methodology and reproducible analysis.
