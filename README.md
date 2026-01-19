@@ -10,11 +10,17 @@ The goal of this project is to explore how ideas from **data science, computer s
 
 ### 1.1 football_metrics
 
+This module contains implementations and experiments around football analytics metrics that aim to quantify tactical structure, player contribution, and contextual game value.
+
 ### 1.2 football_animations
+
+This module contains reusable animation primitives and scene templates for explaining football concepts in a precise, visual, and educational way.
 
 ### 1.3 football_simulations
 
-## Sources and attribution
+This module contains simulation and control, with reinforcement learning (RL) environments that allow agents to learn football behaviors from reward signals and environment dynamics.
+
+## 2. Sources and attribution
 
 This project builds on a combination of **open datasets** and, in some cases, **data accessed under non-disclosure agreements (NDA)**. Only analyses and results that are permitted for public release are included in this repository.
 
