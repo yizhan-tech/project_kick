@@ -1,4 +1,4 @@
-![Banner](media/banner.png)
+![Banner](repo_media/banner.png)
 
 # README
 
