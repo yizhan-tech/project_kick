@@ -5,81 +5,109 @@ class StandardPitch(VGroup):
     def __init__(self, scale=0.08, orientation="horizontal", **kwargs):
         self.orientation = orientation
         self.scale = scale
-        
         super().__init__(**kwargs)
 
-        # FIFA Standard Dimensions (meters)
-        length = 105
-        width = 68
-        penalty_area_depth = 16.5
-        penalty_area_width = 40.32
-        goal_area_depth = 5.5
-        goal_area_width = 18.32
-        penalty_spot_distance = 11
-        center_circle_radius = 9.15
+        # ---------------------------------------------------------
+        # 1. FIFA Standard Dimensions (Meters)
+        # ---------------------------------------------------------
+        FIELD_LENGTH = 105
+        FIELD_WIDTH = 68
         
-        # Helper to handle orientation mapping
-        def p(x, y):
+        PENALTY_AREA_DEPTH = 16.5
+        PENALTY_AREA_WIDTH = 40.32
+        
+        GOAL_AREA_DEPTH = 5.5
+        GOAL_AREA_WIDTH = 18.32
+        
+        PENALTY_SPOT_DIST = 11
+        CENTER_CIRCLE_RADIUS = 9.15
+        
+        # ---------------------------------------------------------
+        # 2. Coordinate Helper
+        # ---------------------------------------------------------
+        def to_coord(x, y):
+            """Maps raw meter coordinates to Manim vectors based on orientation."""
             if self.orientation == "vertical":
-                return np.array([-y * scale, x * scale, 0])
-            return np.array([x * scale, y * scale, 0])
+                return np.array([-y * self.scale, x * self.scale, 0])
+            return np.array([x * self.scale, y * self.scale, 0])
 
-        # Main Pitch Outline
-        l_s, w_s = length * scale, width * scale
-        self.pitch = Rectangle(
-            width=l_s if orientation == "horizontal" else w_s,
-            height=w_s if orientation == "horizontal" else l_s,
+        # ---------------------------------------------------------
+        # 3. Main Pitch Geometry
+        # ---------------------------------------------------------
+        pitch_w = FIELD_LENGTH * self.scale if orientation == "horizontal" else FIELD_WIDTH * self.scale
+        pitch_h = FIELD_WIDTH * self.scale if orientation == "horizontal" else FIELD_LENGTH * self.scale
+        
+        self.boundary = Rectangle(
+            width=pitch_w, height=pitch_h, 
             stroke_color=WHITE, stroke_width=3
         )
 
-        # Halfway Line
         if orientation == "horizontal":
-            self.halfway = Line(p(0, -width/2), p(0, width/2), stroke_width=3)
+            self.halfway_line = Line(to_coord(0, -FIELD_WIDTH/2), to_coord(0, FIELD_WIDTH/2), stroke_width=3)
         else:
-            self.halfway = Line(p(-width/2, 0), p(width/2, 0), stroke_width=3)
+            self.halfway_line = Line(to_coord(-FIELD_WIDTH/2, 0), to_coord(FIELD_WIDTH/2, 0), stroke_width=3)
 
-        # Center Circle & Spot
-        self.center_circle = Circle(radius=center_circle_radius * scale, color=WHITE, stroke_width=3)
+        self.center_circle = Circle(radius=CENTER_CIRCLE_RADIUS * self.scale, color=WHITE, stroke_width=3)
         self.center_spot = Dot(ORIGIN, color=WHITE, radius=0.04)
 
-        # Penalty Areas
-        pa_w, pa_h = penalty_area_depth * scale, penalty_area_width * scale
-        self.pa_left = Rectangle(
-            width=pa_w if orientation == "horizontal" else pa_h,
-            height=pa_h if orientation == "horizontal" else pa_w,
+        # ---------------------------------------------------------
+        # 4. Penalty & Goal Areas
+        # ---------------------------------------------------------
+        pa_rect_w = PENALTY_AREA_DEPTH * self.scale
+        pa_rect_h = PENALTY_AREA_WIDTH * self.scale
+        ga_rect_w = GOAL_AREA_DEPTH * self.scale
+        ga_rect_h = GOAL_AREA_WIDTH * self.scale
+
+        self.penalty_area_left = Rectangle(
+            width=pa_rect_w if orientation == "horizontal" else pa_rect_h,
+            height=pa_rect_h if orientation == "horizontal" else pa_rect_w,
             stroke_width=3
-        ).move_to(p(-length/2 + penalty_area_depth/2, 0))
-        self.pa_right = self.pa_left.copy().move_to(p(length/2 - penalty_area_depth/2, 0))
+        ).move_to(to_coord(-FIELD_LENGTH/2 + PENALTY_AREA_DEPTH/2, 0))
 
-        # Goal Areas
-        ga_w, ga_h = goal_area_depth * scale, goal_area_width * scale
-        self.ga_left = Rectangle(
-            width=ga_w if orientation == "horizontal" else ga_h,
-            height=ga_h if orientation == "horizontal" else ga_w,
+        self.goal_area_left = Rectangle(
+            width=ga_rect_w if orientation == "horizontal" else ga_rect_h,
+            height=ga_rect_h if orientation == "horizontal" else ga_rect_w,
             stroke_width=3
-        ).move_to(p(-length/2 + goal_area_depth/2, 0))
-        self.ga_right = self.ga_left.copy().move_to(p(length/2 - goal_area_depth/2, 0))
+        ).move_to(to_coord(-FIELD_LENGTH/2 + GOAL_AREA_DEPTH/2, 0))
 
-        # Penalty Spots
-        self.ps_left = Dot(p(-length/2 + penalty_spot_distance, 0), radius=0.04)
-        self.ps_right = Dot(p(length/2 - penalty_spot_distance, 0), radius=0.04)
+        self.penalty_area_right = self.penalty_area_left.copy().move_to(to_coord(FIELD_LENGTH/2 - PENALTY_AREA_DEPTH/2, 0))
+        self.goal_area_right = self.goal_area_left.copy().move_to(to_coord(FIELD_LENGTH/2 - GOAL_AREA_DEPTH/2, 0))
 
-        # Penalty Arcs (The 'D')
-        arc_angle = 1.25 # Radians
-        self.left_arc = Arc(
-            radius=center_circle_radius * scale,
-            start_angle=-arc_angle/2 if orientation == "horizontal" else PI/2 - arc_angle/2,
-            angle=arc_angle, stroke_width=3
-        ).move_to(p(-length/2 + penalty_spot_distance + 2.3, 0))
+        self.penalty_spot_left = Dot(to_coord(-FIELD_LENGTH/2 + PENALTY_SPOT_DIST, 0), radius=0.04)
+        self.penalty_spot_right = Dot(to_coord(FIELD_LENGTH/2 - PENALTY_SPOT_DIST, 0), radius=0.04)
 
-        self.right_arc = Arc(
-            radius=center_circle_radius * scale,
-            start_angle=PI - arc_angle/2 if orientation == "horizontal" else -PI/2 - arc_angle/2,
-            angle=arc_angle, stroke_width=3
-        ).move_to(p(length/2 - penalty_spot_distance - 2.3, 0))
+        # ---------------------------------------------------------
+        # 5. Penalty Arcs 
+        # ---------------------------------------------------------
+        ARC_ANGLE = 1.8  # Radians
+        arc_rad = CENTER_CIRCLE_RADIUS * self.scale
+        
+        self.penalty_arc_left = Arc(
+            radius=arc_rad,
+            start_angle=-ARC_ANGLE/2 if orientation == "horizontal" else PI/2 - ARC_ANGLE/2,
+            angle=ARC_ANGLE, stroke_width=3
+        ).shift(self.penalty_spot_left.get_center())
 
+        self.penalty_arc_right = Arc(
+            radius=arc_rad,
+            start_angle=PI - ARC_ANGLE/2 if orientation == "horizontal" else -PI/2 - ARC_ANGLE/2,
+            angle=ARC_ANGLE, stroke_width=3
+        ).shift(self.penalty_spot_right.get_center())
+
+        # ---------------------------------------------------------
+        # 6. Assembly
+        # ---------------------------------------------------------
         self.add(
-            self.pitch, self.halfway, self.center_circle, self.center_spot,
-            self.pa_left, self.pa_right, self.ga_left, self.ga_right,
-            self.ps_left, self.ps_right, self.left_arc, self.right_arc
+            self.boundary,
+            self.halfway_line,
+            self.center_circle,
+            self.center_spot,
+            self.penalty_area_left,
+            self.penalty_area_right,
+            self.goal_area_left,
+            self.goal_area_right,
+            self.penalty_spot_left,
+            self.penalty_spot_right,
+            self.penalty_arc_left,
+            self.penalty_arc_right
         )
