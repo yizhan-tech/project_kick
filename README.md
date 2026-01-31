@@ -12,6 +12,15 @@ The goal of this project is to explore how ideas from **data science, computer s
 
 This module contains implementations and experiments around football analytics metrics that aim to quantify tactical structure, player contribution, and contextual game value.
 
+### 1.1 Football Metrics
+
+This module contains implementations and experiments around football analytics metrics that aim to quantify tactical structure, player contribution, and contextual game value.
+
+| Name | File Link | Data Input | Status |
+| :--- | :--- | :--- | :--- | 
+| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/xG.ipynb) | Event/Tracking | 🟢 Stable |
+| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/xT.ipynb) | Event | 🟡 Testing |
+
 ### 1.2 football_animations
 
 This module contains reusable animation primitives and scene templates for explaining football concepts in a precise, visual, and educational way.
