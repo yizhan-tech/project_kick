@@ -38,6 +38,7 @@ Attribution is treated as an ongoing process. As the project evolves, references
 | Source Name | Data Type | Access Level | Attribution / Link |
 | :--- | :--- | :--- | :--- |
 | **Statsbomb Open Data** | Event | Public | [Github Page](https://github.com/statsbomb/open-data) |
+| **Metrica Sample Data** | Event + Tracking | Public | [Github Page](https://github.com/metrica-sports/sample-data/tree/master) |
 | **SONY Hawkeye Data** | Tracking | NDA | [Official Website](https://www.hawkeyeinnovations.com/data) |
 
 ### 2.2 Academic Foundations
