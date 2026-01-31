@@ -8,10 +8,6 @@ The goal of this project is to explore how ideas from **data science, computer s
 
 ## 1. Repository Structure
 
-### 1.1 football_metrics
-
-This module contains implementations and experiments around football analytics metrics that aim to quantify tactical structure, player contribution, and contextual game value.
-
 ### 1.1 Football Metrics
 
 This module contains implementations and experiments around football analytics metrics that aim to quantify tactical structure, player contribution, and contextual game value.
