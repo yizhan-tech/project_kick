@@ -18,8 +18,8 @@ This module contains implementations and experiments around football analytics m
 
 | Name | File Link | Data Input | Status |
 | :--- | :--- | :--- | :--- | 
-| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/xG/xG.ipynb) | Event/Tracking | 🟢 Stable |
-| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/xT/xT.ipynb) | Event | 🟡 Testing |
+| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/xG/xG.ipynb) | Event | 🟢 Stable |
+| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/xT/xT.ipynb) | Event | 🟢 Stable |
 
 ### 1.2 football_animations
 
@@ -36,3 +36,17 @@ This project builds on a combination of **open datasets** and, in some cases, **
 The methodologies used throughout the project vary in origin. Some components are based on established academic papers or prior work in the football analytics community, others are original contributions, and many are the result of combining existing ideas with new modeling or implementation choices.
 
 Attribution is treated as an ongoing process. As the project evolves, references and credits will be continuously updated to acknowledge the original sources and contributors that inform this work.
+
+### 2.1 Data Sources
+
+| Source Name | Data Type | Access Level | Attribution / Link |
+| :--- | :--- | :--- | :--- |
+| **Statsbomb Open Data** | Event | Public | [Github Page](https://github.com/statsbomb/open-data) |
+| **SONY Hawkeye Data** | Tracking | NDA | [Official Website](https://www.hawkeyeinnovations.com/data) |
+
+### 2.2 Academic Foundations
+
+| Metric / Model | Original Paper / Author | Link / Citation |
+| :--- | :--- | :--- | 
+| **Expected Threat (xT)** | Karun Singh | [Introducing Expected Threat (xT)](https://karun.in/blog/expected-threat.html) |
+| **Pitch Control** | Javier Fernandez & Luke Bornn | [Wide Open Spaces: A statistical technique for measuring space creation in professional soccer](https://www.lukebornn.com/papers/fernandez_ssac_2018.pdf) |
