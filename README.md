@@ -50,3 +50,8 @@ Attribution is treated as an ongoing process. As the project evolves, references
 | :--- | :--- | :--- | 
 | **Expected Threat (xT)** | Karun Singh | [Introducing Expected Threat (xT)](https://karun.in/blog/expected-threat.html) |
 | **Pitch Control** | Javier Fernandez & Luke Bornn | [Wide Open Spaces: A statistical technique for measuring space creation in professional soccer](https://www.lukebornn.com/papers/fernandez_ssac_2018.pdf) |
+
+## Acknowledgments
+Special thanks to the following organizations for their support through data access and technical guidance:
+- **Baidu AI Cloud** 
+- **Bilibili** 
