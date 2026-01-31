@@ -18,8 +18,8 @@ This module contains implementations and experiments around football analytics m
 
 | Name | File Link | Data Input | Status |
 | :--- | :--- | :--- | :--- | 
-| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/xG.ipynb) | Event/Tracking | 🟢 Stable |
-| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/xT.ipynb) | Event | 🟡 Testing |
+| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/xG/xG.ipynb) | Event/Tracking | 🟢 Stable |
+| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/xT/xT.ipynb) | Event | 🟡 Testing |
 
 ### 1.2 football_animations
 
