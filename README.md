@@ -14,13 +14,13 @@ This module contains implementations and experiments around football analytics m
 
 | Name | File Link | Data Input | Status |
 | :--- | :--- | :--- | :--- | 
-| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/shooting/xG.ipynb) | Event | 🟢 Demo Available |
-| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/progression/xT.ipynb) | Event | 🟢 Demo Available |
-| **Pitch Control** | [`pitch_control.ipynb`](./football_metrics/movement/pitch_control.ipynb) | Event | 🟢 Demo Available |
-| **Match Momentum** | N/A | Tracking | 🟡 Developing |
-| **Player Heatmap** | N/A | Tracking | 🟡 Developing |
-| **Passing Network** | N/A | Event | 🟡 Developing |
-| **Physical Analysis** | N/A | Tracking | 🔴 Coming Soon... |
+| Expected Goals (xG) | [`xG.ipynb`](./football_metrics/shooting/xG.ipynb) | Event | 🟢 Demo Available |
+| Expected Threat (xT) | [`xT.ipynb`](./football_metrics/progression/xT.ipynb) | Event | 🟢 Demo Available |
+| Pitch Control | [`pitch_control.ipynb`](./football_metrics/movement/pitch_control.ipynb) | Event | 🟢 Demo Available |
+| Match Momentum | N/A | Tracking | 🟡 Developing |
+| Player Heatmap | N/A | Tracking | 🟡 Developing |
+| Passing Network | N/A | Event | 🟡 Developing |
+| Physical Analysis | N/A | Tracking | 🔴 Coming Soon... |
 
 ### 1.2 football_animations
 
