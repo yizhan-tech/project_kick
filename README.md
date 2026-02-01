@@ -14,8 +14,8 @@ This module contains implementations and experiments around football analytics m
 
 | Name | File Link | Data Input | Status |
 | :--- | :--- | :--- | :--- | 
-| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/xG/xG.ipynb) | Event | 🟢 Stable |
-| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/xT/xT.ipynb) | Event | 🟢 Stable |
+| **Expected Goals (xG)** | [`xG.ipynb`](./football_metrics/shooting/xG.ipynb) | Event | 🟢 Stable |
+| **Expected Threat (xT)** | [`xT.ipynb`](./football_metrics/progression/xT.ipynb) | Event | 🟢 Stable |
 
 ### 1.2 football_animations
 
@@ -48,7 +48,7 @@ Attribution is treated as an ongoing process. As the project evolves, references
 | **Expected Threat (xT)** | Karun Singh | [Introducing Expected Threat (xT)](https://karun.in/blog/expected-threat.html) |
 | **Pitch Control** | Javier Fernandez & Luke Bornn | [Wide Open Spaces: A statistical technique for measuring space creation in professional soccer](https://www.lukebornn.com/papers/fernandez_ssac_2018.pdf) |
 
-## Acknowledgments
+## 3. Acknowledgments
 Special thanks to the following organizations for their support through data access and technical guidance:
 - **Baidu AI Cloud** 
 - **Bilibili** 
