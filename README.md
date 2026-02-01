@@ -20,7 +20,7 @@ This module contains implementations and experiments around football analytics m
 | **Match Momentum** | N/A | Tracking | 🟡 Developing |
 | **Player Heatmap** | N/A | Tracking | 🟡 Developing |
 | **Passing Network** | N/A | Event | 🟡 Developing |
-| **Physical Analysis** | N/A | Tracking | 🔴 Future Plans |
+| **Physical Analysis** | N/A | Tracking | 🔴 Coming Soon... |
 
 ### 1.2 football_animations
 
