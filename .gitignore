@@ -1,0 +1,9 @@
+*.deb
+*.rpm
+*.zip
+*.tar.gz
+# Data folders
+data/
+# Python/Conda stuff
+__pycache__/
+.ipynb_checkpoints/
