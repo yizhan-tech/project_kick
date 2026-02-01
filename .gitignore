@@ -7,3 +7,4 @@ data/
 # Python/Conda stuff
 __pycache__/
 .ipynb_checkpoints/
+.vscode/
