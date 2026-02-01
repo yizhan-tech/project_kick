@@ -42,16 +42,16 @@ Attribution is treated as an ongoing process. As the project evolves, references
 
 | Source Name | Data Type | Access Level | Attribution / Link |
 | :--- | :--- | :--- | :--- |
-| **Statsbomb Open Data** | Event | Public | [Github Page](https://github.com/statsbomb/open-data) |
-| **Metrica Sample Data** | Event + Tracking | Public | [Github Page](https://github.com/metrica-sports/sample-data/tree/master) |
-| **SONY Hawkeye Data** | Tracking | NDA | [Official Website](https://www.hawkeyeinnovations.com/data) |
+| Statsbomb Open Data | Event | Public | [Github Page](https://github.com/statsbomb/open-data) |
+| Metrica Sample Data | Event + Tracking | Public | [Github Page](https://github.com/metrica-sports/sample-data/tree/master) |
+| SONY Hawkeye Data | Tracking | NDA | [Official Website](https://www.hawkeyeinnovations.com/data) |
 
 ### 2.2 Academic Foundations
 
 | Metric / Model | Original Paper / Author | Link / Citation |
 | :--- | :--- | :--- | 
-| **Expected Threat (xT)** | Karun Singh | [Introducing Expected Threat (xT)](https://karun.in/blog/expected-threat.html) |
-| **Pitch Control** | Javier Fernandez & Luke Bornn | [Wide Open Spaces: A statistical technique for measuring space creation in professional soccer](https://www.lukebornn.com/papers/fernandez_ssac_2018.pdf) |
+| Expected Threat (xT) | Karun Singh | [Introducing Expected Threat (xT)](https://karun.in/blog/expected-threat.html) |
+| Pitch Control | Javier Fernandez & Luke Bornn | [Wide Open Spaces: A statistical technique for measuring space creation in professional soccer](https://www.lukebornn.com/papers/fernandez_ssac_2018.pdf) |
 
 ## 3. Acknowledgments
 Special thanks to the following organizations for their support through data access and technical guidance:
