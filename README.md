@@ -26,7 +26,7 @@ This module contains reusable animation primitives and scene templates for expla
 
 ### 1.3 football_simulations
 
-This module contains simulation and control, with reinforcement learning (RL) environments that allow agents to learn football behaviors from reward signals and environment dynamics.
+This module contains simulation and control, with reinforcement learning (RL) environments that allow agents to learn football behaviors from reward signals and environment dynamics. A detailed documentation can be found [here](./football_simulations/documentation.md).
 
 ![RLSoccer](repo_media/Unity_RL_Soccer.png)
 
