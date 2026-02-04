@@ -24,7 +24,7 @@ This module contains implementations and experiments around football analytics m
 
 This module contains reusable animation primitives and scene templates for explaining football concepts in a precise, visual, and educational way.
 
-| **Metric Surface Animation** | **Voronoi Pitch Control Helper** |
+| **Metric Surface** | **Voronoi Pitch Control** |
 | :---: | :---: |
 | ![Metric Surface Animation](repo_media/metric_surface_example.gif) | ![Voronoi Animation](repo_media/voronoi_example.gif) |
 
