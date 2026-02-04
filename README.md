@@ -27,16 +27,16 @@ This module contains reusable animation primitives and scene templates for expla
 <table style="width: 100%; border-collapse: collapse;">
   <tr>
     <td align="center" width="33%">
-      <b>Voronoi Pitch Control Helper</b><br>
+      <b>Expected Goal (xG) Helper</b><br>
       <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="One by one intro">
     </td>
     <td align="center" width="33%">
       <b>Expected Threat (xT) Helper</b><br>
-      <img src="path/to/your/direct_display.gif" width="100%" alt="Direct display">
+      <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="Direct display">
     </td>
     <td align="center" width="33%">
-      <b>Match Flow</b><br>
-      <img src="path/to/your/match_flow.gif" width="100%" alt="Match flow animation">
+      <b>Voronoi Pitch Control Helper</b><br>
+      <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="Match flow animation">
     </td>
   </tr>
 </table>
