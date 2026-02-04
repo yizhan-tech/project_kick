@@ -24,22 +24,9 @@ This module contains implementations and experiments around football analytics m
 
 This module contains reusable animation primitives and scene templates for explaining football concepts in a precise, visual, and educational way.
 
-<table style="width: 100%; border-collapse: collapse;">
-  <tr>
-    <td align="center" width="33%">
-      <b>Expected Goal (xG) Helper</b><br>
-      <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="One by one intro">
-    </td>
-    <td align="center" width="33%">
-      <b>Expected Threat (xT) Helper</b><br>
-      <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="Direct display">
-    </td>
-    <td align="center" width="33%">
-      <b>Voronoi Pitch Control Helper</b><br>
-      <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="Match flow animation">
-    </td>
-  </tr>
-</table>
+| **Metric Surface Animation** | **Voronoi Pitch Control Helper** |
+| :---: | :---: |
+| ![Metric Surface Animation](repo_media/metric_surface_example.gif) | ![Voronoi Animation](repo_media/voronoi_example.gif) |
 
 ### 1.3 football_simulations
 
