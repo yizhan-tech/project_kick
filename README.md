@@ -24,6 +24,23 @@ This module contains implementations and experiments around football analytics m
 
 This module contains reusable animation primitives and scene templates for explaining football concepts in a precise, visual, and educational way.
 
+<table style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <td align="center" width="33%">
+      <b>Voronoi Pitch Control Helper</b><br>
+      <img src="/home/liyi/Documents/project_kick_github/repo_media/voronoi_example.gif" width="100%" alt="One by one intro">
+    </td>
+    <td align="center" width="33%">
+      <b>Expected Threat (xT) Helper</b><br>
+      <img src="path/to/your/direct_display.gif" width="100%" alt="Direct display">
+    </td>
+    <td align="center" width="33%">
+      <b>Match Flow</b><br>
+      <img src="path/to/your/match_flow.gif" width="100%" alt="Match flow animation">
+    </td>
+  </tr>
+</table>
+
 ### 1.3 football_simulations
 
 This module contains simulation and control, with reinforcement learning (RL) environments that allow agents to learn football behaviors from reward signals and environment dynamics. A detailed documentation can be found [here](./football_simulations/documentation.md).

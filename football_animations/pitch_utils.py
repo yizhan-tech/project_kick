@@ -104,11 +104,63 @@ class StandardPitch(VGroup):
         )
         return self
     
-    def add_spatial_pattern(self):
-        pass
+    def wyscout_to_meters(self, x_ws, y_ws):
+        """Converts Wyscout 0-100 coordinates to FIFA meters (-l/2 to l/2)."""
+        # x: 0->-52.5, 100->52.5 | y: 0->34, 100->-34 (Wyscout y is usually inverted)
+        x_m = (x_ws / 100.0 - 0.5) * self.dims["length"]
+        y_m = (0.5 - y_ws / 100.0) * self.dims["width"] 
+        return x_m, y_m
 
-    def plot_tracking_frame(self):
-        pass
+    def wyscout_to_manim(self, x_ws, y_ws):
+        """Direct conversion from Wyscout to Manim vectors."""
+        x_m, y_m = self.wyscout_to_meters(x_ws, y_ws)
+        return self.to_coord(x_m, y_m)
 
-    def add_influence_field(self):
-        pass
+    @staticmethod
+    def _clip_poly_halfspace_2d(poly, n, c, eps=1e-9):
+        """Sutherland-Hodgman clipping for Voronoi cells."""
+        if not poly: return []
+        out = []
+        # Ensure n is 2D for the dot product logic
+        n2d = n[:2]
+        prev = poly[-1]
+        prev_in = (np.dot(n2d, prev[:2]) <= c + eps)
+        
+        for cur in poly:
+            cur_in = (np.dot(n2d, cur[:2]) <= c + eps)
+            if cur_in != prev_in:
+                edge = cur - prev
+                # Slice edge to 2D for the denominator
+                denom = np.dot(n2d, edge[:2])
+                if abs(denom) > 1e-12:
+                    t = (c - np.dot(n2d, prev[:2])) / denom
+                    out.append(prev + t * edge)
+            if cur_in:
+                out.append(cur)
+            prev, prev_in = cur, cur_in
+        return out
+
+    def get_voronoi_cells(self, points_ws):
+        """Calculates clipped Voronoi polygons for a list of Wyscout points."""
+        pts_manim = [self.wyscout_to_manim(p[0], p[1]) for p in points_ws]
+        
+        l, w = self.dims["length"] * self.scale, self.dims["width"] * self.scale
+        # Define base poly as 3D points (Manim standard)
+        if self.orientation == "horizontal":
+            base_poly = [np.array([x, y, 0]) for x, y in [(-l/2, -w/2), (l/2, -w/2), (l/2, w/2), (-l/2, w/2)]]
+        else:
+            base_poly = [np.array([x, y, 0]) for x, y in [(-w/2, -l/2), (w/2, -l/2), (w/2, l/2), (-w/2, l/2)]]
+
+        cells = []
+        for i, pi in enumerate(pts_manim):
+            cell = base_poly
+            for j, pj in enumerate(pts_manim):
+                if i == j: continue
+                n = pj - pi
+                if np.linalg.norm(n) < 1e-7: continue
+                midpoint = (pi + pj) / 2
+                # Ensure we dot 2D vs 2D
+                c = np.dot(n[:2], midpoint[:2])
+                cell = self._clip_poly_halfspace_2d(cell, n, c)
+            cells.append(cell)
+        return cells
