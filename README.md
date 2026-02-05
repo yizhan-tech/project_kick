@@ -17,7 +17,7 @@ This module contains implementations and experiments around football analytics m
 | Expected Goals (xG) | [`xG.ipynb`](./football_metrics/shooting/xG.ipynb) | Event | 🟢 Demo Available |
 | Expected Threat (xT) | [`xT.ipynb`](./football_metrics/progression/xT.ipynb) | Event | 🟢 Demo Available |
 | Pitch Control | [`pitch_control.ipynb`](./football_metrics/movement/pitch_control.ipynb) | Event | 🟢 Demo Available |
-| Passing Network | ['passing_network.ipynb'](./football_metrics/progression/passing_network.ipynb) | Event | 🟢 Demo Available |
+| Passing Network | [`passing_network.ipynb`](./football_metrics/progression/passing_network.ipynb) | Event | 🟢 Demo Available |
 | Physical Analysis | N/A | Tracking | 🔴 Developing... |
 
 ### 1.2 football_animations
