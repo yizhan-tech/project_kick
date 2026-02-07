@@ -22,7 +22,7 @@ This module contains implementations and experiments around football analytics m
 
 ### 1.2 football_animations
 
-This module contains reusable animation primitives and scene templates for explaining football concepts in a precise, visual, and educational way.
+This module contains reusable animation primitives and scene templates.
 
 | **Metric Surface** | **Voronoi Pitch Control** |
 | :---: | :---: |
