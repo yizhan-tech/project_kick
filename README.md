@@ -48,6 +48,7 @@ Attribution is treated as an ongoing process. As the project evolves, references
 | Metrica Sample Data | Event + Tracking | Public | [Github](https://github.com/metrica-sports/sample-data/tree/master) |
 | Friends-of-Tracking | Tracking | Public | [Github](https://github.com/Friends-of-Tracking-Data-FoTD/Last-Row) |
 | SONY Hawkeye Data | Tracking | NDA | [Official Website](https://www.hawkeyeinnovations.com/data) |
+| Opta Data Feed | Event | NDA | [Documentation](https://documentation.statsperform.com/) | 
 
 
 ### 2.2 Academic Foundations
@@ -61,3 +62,4 @@ Attribution is treated as an ongoing process. As the project evolves, references
 Special thanks to the following organizations for their support through data access and technical guidance:
 - **Baidu AI Cloud** 
 - **Bilibili** 
+- **Statsperform Opta**
