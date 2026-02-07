@@ -47,56 +47,52 @@ EnvRoot
         └── Player_B2
 ```
 
-## 1.1 The Pitch
+## 1.1 The Play Area
 
-The `Pitch` group defines the Play Area: the **physical boundaries** and **surface layout** where the soccer agents and the ball are contained. It establishes the foundational space where physical movement is possible, separate from the *scoring* and *rule-based systems*.
+The `Pitch` group defines the Play Area: the **physical boundaries** and **surface layout** where the soccer agents and the ball are contained. 
 
-- `Ground`: A static plane with a scale of 4:1:7, providing a total physical surface of 40m x 70m. The mesh uses a custom **Physic Material** (*Assets/Materials/Physics/PitchPhysics*) to ensure consistent ball-handling and locomotion.
-    - **Friction**: High friction values are set to prevent the ball from sliding indefinitely, forcing agents to actively "push" or "carry" the ball to maintain momentum.
-    - **Bounciness**: Set to zero to minimize vertical jitter and keep the ball grounded, focusing the simulation on 2D tactical play.
-    - **Combine Modes**: Friction is set to Multiply to emphasize the interaction between the ball and the playing surface, while Bounciness is set to Minimum to suppress any unintended elastic energy from the ground surface.
+- `Ground`: A static plane with a scale of 4:1:7, providing a total physical surface of 40m x 70m. 
+- `Wall`: Physical barriers positioned slightly outside the visible pitch boundaries. They prevent agents and the ball from falling off the ground into the void.
+- `GoalTrigger`: A collision-detecting volume located behind the goal line. Contact between the ball and this trigger serves as the final success state for an episode.
+- `GoalPost`: Each goal is composed of two collidable cylinders. Since the current simulation excludes lofted kicks, a horizontal crossbar is omitted. These cylinders are physically active to simulate realistic "bounce-back" behavior when the ball strikes the post.
+- `GoalArea`: Green rectangles placed at either end of the field. These act as clear indicators for the user to identify the scoring zones. They do not contain any trigger logic.
 - `FieldLine`: Visual markers placed on the ground to indicate the standard boundaries of a soccer pitch.
-- `Wall`: Physical barriers positioned slightly outside the visible pitch boundaries. They prevent agents and the ball from falling off the ground into the void while allowing agents to move slightly beyond the "Play Area" lines.
+- `OOBRoot`: The logical boundaries of the match. This system uses a series of intangible trigger volumes (OOB_E, OOB_W, etc.) to manage game state transitions.
 
-## 1.2 Out of Bounds (OOB) System
+The **"Full Clearance" Boundary Logic**: OOB triggers are placed exactly at the perimeter of the 40m x 70m ground. When the reset is triggered, the ball's innermost edge is 1.2m away from the trigger. This effectively creates a playing field of 37.6m x 67.6m (40−1.2×2 for width, 70−1.2×2 for length).
 
-The `OOBRoot` defines the logical boundaries of the match. This system uses a series of intangible trigger volumes (OOB_E, OOB_W, etc.) to manage game state transitions.
+Visual Alignment: The FieldLines are placed slightly inward from the physical walls/OOB triggers. This ensures that when the user sees the ball completely cross the white line, the physics engine simultaneously registers the OOB hit, making the visual experience and the logic synchronous.
 
 ![OOB_vs_Wall](./media/oob_vs_wall.png)
 
 <p align="center"><i>Fig 1. A visual comparison between OOB and Wall objects</i></p>
 
-## The Goal Structures
-- `GoalTrigger`: A collision-detecting volume located behind the goal line. Contact between the ball and this trigger serves as the final success state for an episode. When triggered, the environment awards a global reward to the scoring team and initiates a scene reset.
-- `GoalArea`: green rectangles placed at either end of the field. These act as clear indicators for the user to identify the scoring zones, as the physical goalposts are thin. They do not contain any trigger logic.
-- `GoalPost`: Each goal is composed of two collidable cylinders. Since the current simulation excludes lofted kicks, a horizontal crossbar is omitted. These cylinders are physically active to simulate realistic "bounce-back" behavior when the ball strikes the post.
+## 1.2 The Ball and Agents
 
-# 2. The Agents and The Ball
+This section defines the dynamic entities that interact within the Play Area.
 
-While the first section defines where the game happens, this section defines the entities that interact within that space.
+- `Ball`: The central objective of the game. Its *1.2m* diameter, combined with the placement of OOB triggers at the *40m x 70m* mark, creates an effective playing field of *37.6m x 67.6m* based on the "Full Clearance" rule.
+- `Agent`: Decision-making entity (player) represented as Cubes. They are divided into *Team A* and *Team B*, each with a specific goal orientation.
 
-## 2.1 The Ball
+## 1.3 Physical Properties and Simulation Constants
 
-The `ball`, a sphere with a scale of $1.2 \times 1.2 \times 1.2$, is the central objective of the environment.
+### 1.3.1 Physic Materials
 
-Like the ground, the ball has specific friction and drag settings to ensure that "dribbling" (carrying the ball) requires constant input from the agents.
+| **Object** | **Dynamic Friction** | **Static Friction** | **Bounciness** | **Friction Combine** | **Bounce Combine** |
+| --- | --- | --- | --- | --- | --- |
+| `Ground` | 0.8 | 0.8 | 0 | Multiply | Minimum |
+| `Ball` | 0.6 | 0.6 | 0.2 | Multiply | Maximum |
+| `Player` | 0.9 | 0.9 | 0.05 | Average | Average |
+| `GoalPost` | 0.4 | 0.4 | 0.7 | Average | Maximum |
 
-The **"Full Clearance" Boundary Logic**: OOB triggers are placed exactly at the perimeter of the 40m x 70m ground.
+### 1.3.2 Rigidbody Settings
 
-When the reset is triggered, the ball's innermost edge is 1.2m away from the trigger. This effectively creates a playing field of 37.6m x 67.6m (40−1.2×2 for width, 70−1.2×2 for length).
+| **Object** | **Mass** | **Linear Damping** | **Angular Damping** | **Interpolate** | **Collision Detection** | **Freeze Rotation** |
+| --- | --- | --- | --- | --- | --- | --- |
+| `Ball` | 0.4 | 0.08 | 2.5 | Interpolate | Continuous Dynamic | N/A |
+| `Agent` | 75 | 3 | 6 | Interpolate | Discrete | X and Z |
 
-Visual Alignment: The FieldLines are placed slightly inward from the physical walls/OOB triggers. This ensures that when the user sees the ball completely cross the white line, the physics engine simultaneously registers the OOB hit, making the visual experience and the logic perfectly synchronous.
+# Logic and Implementation
 
-## 2.2 The Soccer Agents
+This section details the C# scripting architecture that governs individual entities and the overall game flow.
 
-The agents are the decision-making entities. Physically, they are simplified into Cubes to ensure consistent collision detection and to keep the focus on tactical movement rather than complex animations.
-
-- Team Identity: Agents are divided into Team_A (North-targeting) and Team_B (South-targeting).
-
-Physical Capabilities:
-
-    Locomotion: Force-based movement and rotation.
-
-    The Kick: A discrete action that transfers a defined impulse to the ball.
-
-    The Possession Radius: A "sweet spot" around the agent where it can influence the ball's trajectory (carrying/dribbling).
