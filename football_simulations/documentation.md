@@ -77,37 +77,39 @@ The logical state of the game is governed by the `OOBRoot`, a system of intangib
 
 ## 1.2 Dynamic Entities
 
-The simulation tracks two primary dynamic classes: the Ball and the Agents. These entities are the only objects with active `Rigidbody` components during play.
+The simulation tracks two primary dynamic classes: the Ball and the Agents. These are the only objects utilizing active `Rigidbody` components.
 
 ### 1.2.1 The Ball
 
 The central objective of the simulation.
 - **Scale**: 1.2m Diameter.
-- **Interaction Logic**: The ball serves as the "Reward Vector." Its position relative to the goals and agents forms the core of the proximity-based reward signals.
+- **Physics Role**: Acts as the primary target for agent interaction. Its high bounciness against goalposts and low linear damping are tuned to produce long, predictable trajectories.
 
 ### 1.2.2 The Agents
 
-Decision-making entities represented as 1.2m x 1.2m x 1.2m cubes.
+Active entities represented as 1.2m x 1.2m x 1.2m cubes.
 - **Team Orientation**: Agents are categorized into `Team A` (Red) and `Team B` (Blue).
-- **The Control Point**: A dedicated `Transform` located at the front-base of the agent. This represents the "Sweet Spot" for both the Ball Attraction Force (Dribbling) and the Kick Impulse (Striking/Tackling).
+- **The Control Point**: A dedicated `Transform` located at the front-base of the agent. This represents the "Sweet Spot" for physical interaction, used as the origin for both dribbling forces and kicking impulses.
 
 ## 1.3 Physic Materials and Constants
 
-To ensure deterministic and realistic behavior, we utilize specific `PhysicMaterial` configurations to define surface friction and energy restitution (Bounciness).
+Deterministic behavior is maintained through specific `PhysicMaterial` configurations, defining surface friction and energy restitution (Bounciness).
 
-| **Object** | **Dynamic Friction** | **Static Friction** | **Bounciness** | **Friction Combine** | **Bounce Combine** |
+### 1.3.1 Material Properties
+
+| **Object** | **Friction (D/S)** | **Bounciness** | **Friction/Bounce Combine** |
+| --- | --- | --- | --- |
+| `Ground` | 0.8 / 0.8 | 0.0 | Multiply / Minimum |
+| `Ball` | 0.6 / 0.6 | 0.2 | Multiply / Maximum |
+| `Player` | 0.9 / 0.9 | 0.05 | Average / Average |
+| `GoalPost` | 0.4 / 0.4 | 0.7 | Average / Maximum |
+
+### 1.3.2 Rigidbody Settings
+
+| **Object** | **Mass** | **Linear/Angular Damping** | **Interpolate** | **Collision Detection** | **Freeze Rotation** |
 | --- | --- | --- | --- | --- | --- |
-| `Ground` | 0.8 | 0.8 | 0 | Multiply | Minimum |
-| `Ball` | 0.6 | 0.6 | 0.2 | Multiply | Maximum |
-| `Player` | 0.9 | 0.9 | 0.05 | Average | Average |
-| `GoalPost` | 0.4 | 0.4 | 0.7 | Average | Maximum |
-
-**Rigidbody Configuration**
-
-| **Object** | **Mass** | **Linear Damping** | **Angular Damping** | **Interpolate** | **Collision Detection** | **Freeze Rotation** |
-| --- | --- | --- | --- | --- | --- | --- |
-| `Ball` | 0.4 | 0.08 | 2.5 | Interpolate | Continuous Dynamic | N/A |
-| `Agent` | 75 | 3 | 6 | Interpolate | Discrete | X and Z |
+| `Ball` | 0.4 | 0.08 / 2.5 | Interpolate | Continuous Dynamic | N/A |
+| `Agent` | 75 | 3.0 / 6.0 | Interpolate | Discrete | X and Z |
 
 # 2. Logic and Implementation
 
