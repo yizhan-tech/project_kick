@@ -240,7 +240,6 @@ public class AgentController : Agent
         }
         else
         {
-            // Lock Y to stop drift when not turning
             playerRb.constraints = RigidbodyConstraints.FreezeRotationX | 
                                 RigidbodyConstraints.FreezeRotationZ | 
                                 RigidbodyConstraints.FreezeRotationY;
@@ -249,16 +248,35 @@ public class AgentController : Agent
 
         // B. TRANSLATION
         Vector3 targetDir = Vector3.zero;
-        if (moveDir == 1) targetDir = transform.forward;
-        else if (moveDir == 2) targetDir = -transform.forward;
-        else if (moveDir == 3) targetDir = -transform.right * sideMultiplier;
-        else if (moveDir == 4) targetDir = transform.right * sideMultiplier;
+        float directionalMultiplier = 1.0f; // Default for Forward (moveDir == 1)
 
-        float effectiveMoveSpeed = isExhausted ? moveSpeed * exhaustionPenalty : moveSpeed;
+        if (moveDir == 1) 
+        {
+            targetDir = transform.forward;
+        }
+        else if (moveDir == 2) 
+        {
+            targetDir = -transform.forward;
+            directionalMultiplier = 0.6f; // Backwards is 60% speed
+        }
+        else if (moveDir == 3) 
+        {
+            targetDir = -transform.right * sideMultiplier;
+            directionalMultiplier = 0.8f; // Strafing is 80% speed
+        }
+        else if (moveDir == 4) 
+        {
+            targetDir = transform.right * sideMultiplier;
+            directionalMultiplier = 0.8f; // Strafing is 80% speed
+        }
+
+        // Calculate final speed: Base Speed * Directional Penalty * Exhaustion (if any)
+        float finalSpeed = moveSpeed * directionalMultiplier;
+        if (isExhausted) finalSpeed *= exhaustionPenalty;
         
         if (moveDir != 0)
         {
-            Vector3 targetVel = targetDir * effectiveMoveSpeed;
+            Vector3 targetVel = targetDir * finalSpeed;
             Vector3 velocityChange = (targetVel - playerRb.linearVelocity);
             velocityChange.y = 0; // Preserve gravity
             

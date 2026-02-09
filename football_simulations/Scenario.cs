@@ -23,9 +23,6 @@ public class Scenario : ScriptableObject
     public Vector3 ballDirectPos;
     public float ballJitter = 1f;
 
-    [Header("Team Mirroring")]
-    public bool zMirrorForTeamB = true;
-
     [System.Serializable]
     public struct AgentSetup
     {

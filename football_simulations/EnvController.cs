@@ -72,8 +72,7 @@ public class EnvController : MonoBehaviour
         m_TeamAGroup = new SimpleMultiAgentGroup();
         m_TeamBGroup = new SimpleMultiAgentGroup();
 
-        // Just populate the master list and set references
-        // DO NOT call m_TeamAGroup.RegisterAgent() here!
+        // Populate the master list and set references
         foreach (var agent in teamA_Agents) RegisterAgentReferences(agent, 0);
         foreach (var agent in teamB_Agents) RegisterAgentReferences(agent, 1);
         
@@ -530,7 +529,6 @@ public class EnvController : MonoBehaviour
                         pos = a + (dir * dist) + (Vector3.Cross(dir, Vector3.up) * s.orthogonalOffset);
                     }
 
-                    if (teamId == 1 && data.zMirrorForTeamB) pos.z *= -1;
                     pos += GetRandomOffset(s.jitter);
                     currentPlannedPositions[agents[i]] = pos;
 
