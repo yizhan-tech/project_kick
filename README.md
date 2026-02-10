@@ -19,9 +19,10 @@ This module contains implementations and experiments around football analytics m
 | Pitch Control | [`pitch_control.ipynb`](./football_metrics/movement/pitch_control.ipynb) | Event | 🟢 Demo Available |
 | Passing Network | [`passing_network.ipynb`](./football_metrics/progression/passing_network.ipynb) | Event | 🟢 Demo Available |
 | Physical Analysis | N/A | Tracking | 🔴 Developing... |
+| Vision Aggro | N/A | Tracking | 🔴 Developing... |
 | Expected Possession Value (EPV) | N/A | Event + Tracking | 🔴 Developing... |
 | On-Ball Value (OBV) | N/A | Event + Tracking | 🔴 Developing... |
-| Vision Aggro | N/A | Tracking | 🔴 Developing... |
+
 
 ### 1.2 football_animations
 
