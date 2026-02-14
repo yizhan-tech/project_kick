@@ -8,9 +8,9 @@ The goal of this project is to explore how ideas from **data science, computer s
 
 ## 1. Repository Structure
 
-### 1.1 Football Metrics
+### 1.1 Football Models
 
-This module contains implementations and experiments around football analytics metrics that aim to quantify tactical structure, player contribution, and contextual game value.
+This module contains implementations and experiments around football analytics models that aim to quantify tactical structure, player contribution, and contextual game value.
 
 | Name | File Link | Data Input | Status |
 | :--- | :--- | :--- | :--- | 
@@ -19,7 +19,7 @@ This module contains implementations and experiments around football analytics m
 | Pitch Control | [`pitch_control.ipynb`](./football_metrics/movement/pitch_control.ipynb) | Event | 🟢 Demo Available |
 | Passing Network | [`passing_network.ipynb`](./football_metrics/progression/passing_network.ipynb) | Event | 🟢 Demo Available |
 | Physical Analysis | N/A | Tracking | 🔴 Developing... |
-| Vision Aggro | N/A | Tracking | 🔴 Developing... |
+| Visual Occupancy | N/A | Tracking | 🔴 Developing... |
 | Expected Possession Value (EPV) | N/A | Event + Tracking | 🔴 Developing... |
 | On-Ball Value (OBV) | N/A | Event + Tracking | 🔴 Developing... |
 
