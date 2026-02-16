@@ -61,6 +61,7 @@ Attribution is treated as an ongoing process. As the project evolves, references
 | :--- | :--- | :--- | 
 | Expected Threat (xT) | Karun Singh | [Introducing Expected Threat (xT)](https://karun.in/blog/expected-threat.html) |
 | Pitch Control | Javier Fernandez & Luke Bornn | [Wide Open Spaces: A statistical technique for measuring space creation in professional soccer](https://www.lukebornn.com/papers/fernandez_ssac_2018.pdf) |
+| Tactical Run | Sam Gregory | [Ready Player Run: Off-ball run identification and classification](https://static.capabiliaserver.com/frontend/clients/barca/wp_prod/wp-content/uploads/2020/01/ed15d067-ready-player-run-barcelona-paper-sam-gregory.pdf) | 
 
 ## 3. Acknowledgments
 Special thanks to the following organizations for their support through data access and technical guidance:
